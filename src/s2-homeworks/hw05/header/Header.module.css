@@ -6,7 +6,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 0 40px rgba(29, 33, 38, 0.13), 0 0 2px rgba(29, 33, 38, 0.1);
+    box-shadow: 0 0 40px rgba(29, 33, 38, 0.1), 0 0 2px rgba(29, 33, 38, 0.1);
     height: 60px;
     padding: 0 70px;
 }
