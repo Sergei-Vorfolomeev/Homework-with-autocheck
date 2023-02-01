@@ -63,7 +63,10 @@
 .link:hover {
     color: #0059B2;
 }
-.link:active {
+.activeLink {
     text-decoration: underline;
+    font-size: 30px;
+    line-height: 70px;
+    color: black;
 }
 
