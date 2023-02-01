@@ -1,0 +1,17 @@
+.App {
+    --header_height: 60px;
+}
+
+.hw {
+
+}
+
+.hwTitle {
+    margin-bottom: 20px;
+}
+hr {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: black;
+    height: 3px;
+}

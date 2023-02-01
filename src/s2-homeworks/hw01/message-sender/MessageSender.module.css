@@ -1,0 +1,31 @@
+.sendForm {
+
+}
+
+.textarea {
+    width: 92%;
+
+    border-radius: 10px;
+    text-align: left;
+    background-color: #F5F9FF;
+    resize: none;
+}
+
+.button {
+    background-color: #0066cc;
+    color: white;
+    font-weight: bold;
+    width: 6%;
+    text-align: center;
+    margin: 0 13px;
+    border-radius: 10px;
+
+}
+
+.button:hover {
+
+}
+
+.button:active {
+
+}

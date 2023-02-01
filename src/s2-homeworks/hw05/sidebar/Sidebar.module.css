@@ -1,0 +1,69 @@
+.sidebar {
+    display: none;
+}
+
+.sidebar.open {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    background-color: #fff;
+    box-shadow: 0 10px 40px rgba(29, 33, 38, 0.13), 0 1px 2px rgba(29, 33, 38, 0.1);
+
+}
+
+.background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.3;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px;
+}
+
+.nav a {
+
+}
+
+.nav a:hover {
+
+}
+
+.nav a.active {
+
+}
+
+.close {
+    display: block;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    right: 16px;
+    top: 16px;
+}
+
+.close img {
+
+}
+
+.link {
+    font-size: 30px;
+    line-height: 70px;
+    text-decoration: none;
+    color: black;
+}
+.link:hover {
+    color: #0059B2;
+}
+.link:active {
+    text-decoration: underline;
+}
+
