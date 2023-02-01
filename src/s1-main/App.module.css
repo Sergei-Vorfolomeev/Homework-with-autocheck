@@ -3,11 +3,17 @@
 }
 
 .hw {
-
+    padding: 30px 70px;
 }
 
 .hwTitle {
-    margin-bottom: 20px;
+    padding: 70px 70px 10px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+    color: #000000;
+
 }
 hr {
     margin-top: 30px;
