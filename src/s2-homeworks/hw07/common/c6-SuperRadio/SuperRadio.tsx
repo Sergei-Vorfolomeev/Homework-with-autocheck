@@ -5,16 +5,13 @@ import React, {
     HTMLAttributes,
 } from 'react'
 import s from './SuperRadio.module.css'
+import {log} from "util";
 
-type DefaultRadioPropsType = DetailedHTMLProps<
-    InputHTMLAttributes<HTMLInputElement>,
-    HTMLInputElement
->
+type DefaultRadioPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement>
 // тип пропсов обычного спана
-type DefaultSpanPropsType = DetailedHTMLProps<
-    HTMLAttributes<HTMLSpanElement>,
-    HTMLSpanElement
->
+type DefaultSpanPropsType = DetailedHTMLProps<HTMLAttributes<HTMLSpanElement>,
+    HTMLSpanElement>
 
 type SuperRadioPropsType = Omit<DefaultRadioPropsType, 'type'> & {
     options?: any[]
@@ -24,44 +21,49 @@ type SuperRadioPropsType = Omit<DefaultRadioPropsType, 'type'> & {
 }
 
 const SuperRadio: React.FC<SuperRadioPropsType> = ({
-    id,
-    name,
-    className,
-    options,
-    value,
-    onChange,
-    onChangeOption,
-    spanProps,
-    ...restProps
-}) => {
+                                                       id,
+                                                       name,
+                                                       className,
+                                                       options,
+                                                       value,
+                                                       onChange,
+                                                       onChangeOption,
+                                                       spanProps,
+                                                       ...restProps
+                                                   }) => {
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
         // делают студенты
+        onChangeOption && onChangeOption(+e.currentTarget.value)
     }
+    console.log(value)
+    console.log(options?.map(el => el))
 
     const finalRadioClassName = s.radio + (className ? ' ' + className : '')
     const spanClassName = s.span + (spanProps?.className ? ' ' + spanProps.className : '')
 
     const mappedOptions: any[] = options
         ? options.map((o) => (
-              <label key={name + '-' + o.id} className={s.label}>
-                  <input
-                      id={id + '-input-' + o.id}
-                      className={finalRadioClassName}
-                      type={'radio'}
-                      // name, checked, value делают студенты
-
-                      onChange={onChangeCallback}
-                      {...restProps}
-                  />
-                  <span
-                      id={id + '-span-' + o.id}
-                      {...spanProps}
-                      className={spanClassName}
-                  >
+            <label key={name + '-' + o.id} className={s.label}>
+                <input
+                    id={id + '-input-' + o.id}
+                    className={finalRadioClassName}
+                    type={'radio'}
+                    // name, checked, value делают студенты
+                    name={name}
+                    checked={o.id === value}
+                    value={o.id}
+                    onChange={onChangeCallback}
+                    {...restProps}
+                />
+                <span
+                    id={id + '-span-' + o.id}
+                    {...spanProps}
+                    className={spanClassName}
+                >
                       {o.value}
                   </span>
-              </label>
-          ))
+            </label>
+        ))
         : []
 
     return <div className={s.options}>{mappedOptions}</div>
