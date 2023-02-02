@@ -35,8 +35,6 @@ const SuperRadio: React.FC<SuperRadioPropsType> = ({
         // делают студенты
         onChangeOption && onChangeOption(+e.currentTarget.value)
     }
-    console.log(value)
-    console.log(options?.map(el => el))
 
     const finalRadioClassName = s.radio + (className ? ' ' + className : '')
     const spanClassName = s.span + (spanProps?.className ? ' ' + spanProps.className : '')

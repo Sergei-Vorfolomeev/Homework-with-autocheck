@@ -1,4 +1,5 @@
 .select {
+    background-color: #FFFFFF;
 }
 
 .select:focus {
@@ -6,4 +7,5 @@
 
 
 .option:hover {
+    color: #0066CC
 }
