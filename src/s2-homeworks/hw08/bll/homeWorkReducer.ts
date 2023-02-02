@@ -9,7 +9,7 @@ export const homeWorkReducer = (state: UserType[] = initialPeople, action: Actio
         case 'sort': { // by name
             switch (action.payload) {
                 case "up":
-                    return [...state.sort((a, b) => {
+                    return [...state].sort((a, b) => {
                         if (a.name.toLowerCase() > b.name.toLowerCase()) {
                             return 1
                         } else {
@@ -20,9 +20,8 @@ export const homeWorkReducer = (state: UserType[] = initialPeople, action: Actio
                             }
                         }
                     })
-                    ]
                 case "down":
-                    return [...state.sort((a, b) => {
+                    return [...state].sort((a, b) => {
                         if (a.name.toLowerCase() > b.name.toLowerCase()) {
                             return -1
                         } else {
@@ -33,7 +32,6 @@ export const homeWorkReducer = (state: UserType[] = initialPeople, action: Actio
                             }
                         }
                     })
-                    ]
                 default:
                     return state
             }
