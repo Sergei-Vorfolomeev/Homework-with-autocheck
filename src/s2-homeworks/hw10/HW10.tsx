@@ -15,12 +15,15 @@ import {Loader} from './Loader'
 
 const HW10 = () => {
     // useSelector, useDispatch // пишет студент
-    const isLoading = false
+    const isLoading = useSelector<AppStoreType, boolean>(state => state.loading.isLoading)
+    const dispatch = useDispatch()
 
     const setLoading = () => { // пишет студент // показать крутилку на 1,5 секунд
-        // dispatch
-
-        // setTimeout
+        dispatch(loadingAC(true))
+        setTimeout(turnOffLoading, 1500)
+    }
+    const turnOffLoading = () => {
+        dispatch(loadingAC(false))
     }
 
     return (
@@ -39,6 +42,7 @@ const HW10 = () => {
                     >
                         Set loading...
                     </SuperButton>
+
                 )}
             </div>
         </div>
