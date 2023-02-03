@@ -11,4 +11,7 @@
 }
 
 .more {
+    opacity: 0.5;
+    margin-top: 5px;
+    font-size: 14px;
 }

@@ -3,6 +3,14 @@ import SuperButton from '../hw04/common/c2-SuperButton/SuperButton'
 import {restoreState} from '../hw06/localStorage/localStorage'
 import s from './Clock.module.css'
 
+/*
+* 1 - в файле Clock.tsx дописать функции stop, start, onMouseEnter, onMouseLeave
+* 2 - в файле Clock.tsx из переменной date вычислить значения stringTime, stringDate, stringDay, stringMonth
+* 3 - в файле Clock.tsx дизэйблить кнопки стоп / старт если таймер не запущен / запущен соответственно
+* 4 - сделать стили в соответствии с дизайном
+* */
+
+
 function Clock() {
     const [timerId, setTimerId] = useState<number | undefined>(undefined)
     // for autotests // не менять // можно подсунуть в локалСторэдж нужную дату, чтоб увидеть как она отображается
@@ -12,27 +20,34 @@ function Clock() {
     const start = () => {
         // пишут студенты // запустить часы (должно отображаться реальное время, а не +1)
         // сохранить ид таймера (https://learn.javascript.ru/settimeout-setinterval#setinterval)
-
+        setDate(new Date())
+        const timer = setTimeout(start, 1000)
+       setTimerId(+timer)
     }
 
     const stop = () => {
         // пишут студенты // поставить часы на паузу, обнулить ид таймера (timerId <- undefined)
-
+        clearInterval(timerId)
+        setTimerId(undefined)
     }
 
     const onMouseEnter = () => { // пишут студенты // показать дату если наведена мышка
-
+        setShow(true)
     }
     const onMouseLeave = () => { // пишут студенты // спрятать дату если мышка не наведена
-
+        setShow(false)
     }
 
-    const stringTime = 'date->time' || <br/> // часы24:минуты:секунды (01:02:03)/(23:02:03)/(24:00:00)/(00:00:01) // пишут студенты
-    const stringDate = 'date->date' || <br/> // день.месяц.год (01.02.2022) // пишут студенты, варианты 01.02.0123/01.02.-123/01.02.12345 не рассматриваем
+    const stringTime = Intl.DateTimeFormat('ru', {
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric'
+    }).format(date) || <br/> // часы24:минуты:секунды (01:02:03)/(23:02:03)/(24:00:00)/(00:00:01) // пишут студенты
+    const stringDate = Intl.DateTimeFormat('en', {month: 'long'}).format(date) || <br/> // день.месяц.год (01.02.2022) // пишут студенты, варианты 01.02.0123/01.02.-123/01.02.12345 не рассматриваем
 
     // день недели на английском, месяц на английском (https://learn.javascript.ru/intl#intl-datetimeformat)
-    const stringDay = 'date->day' || <br/> // пишут студенты
-    const stringMonth = 'date->month' || <br/> // пишут студенты
+    const stringDay = Intl.DateTimeFormat('en', {weekday: "long"}).format(date) || <br/> // пишут студенты
+    const stringMonth = Intl.DateTimeFormat('ru').format(date) || <br/> // пишут студенты
 
     return (
         <div className={s.clock}>
@@ -43,7 +58,7 @@ function Clock() {
                 onMouseLeave={onMouseLeave}
             >
                 <span id={'hw9-day'}>{stringDay}</span>,{' '}
-                <span id={'hw9-time'}>
+                <span id={'hw9-time'} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
                     <strong>{stringTime}</strong>
                 </span>
             </div>
@@ -66,17 +81,17 @@ function Clock() {
             <div className={s.buttonsContainer}>
                 <SuperButton
                     id={'hw9-button-start'}
-                    disabled={true} // пишут студенты // задизэйблить если таймер запущен
+                    disabled={!!timerId} // пишут студенты // задизэйблить если таймер запущен
                     onClick={start}
                 >
-                    start
+                    Start
                 </SuperButton>
                 <SuperButton
                     id={'hw9-button-stop'}
-                    disabled={true} // пишут студенты // задизэйблить если таймер не запущен
+                    disabled={!(!!timerId)} // пишут студенты // задизэйблить если таймер не запущен
                     onClick={stop}
                 >
-                    stop
+                    Stop
                 </SuperButton>
             </div>
         </div>
