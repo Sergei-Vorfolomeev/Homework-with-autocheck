@@ -55,19 +55,19 @@ const HW13 = () => {
                     setText(e.message)
                     setInfo(e.name)
                 }
-                if (e.response && e.response.data.yourBody.success === false) {
+                if (e.response && e.code === "ERR_BAD_RESPONSE") {
                     setCode('Ошибка 500!')
                     setImage(error500)
                     setText(e.response.data.errorText)
                     setInfo(e.response.data.info)
-                } else {
-                    if (e.response) {
-                        setCode('Ошибка 400!')
-                        setImage(error400)
-                        setText(e.response.data.errorText)
-                        setInfo(e.response.data.info)
-                    }
                 }
+                if (e.response && e.code === "ERR_BAD_REQUEST") {
+                    setCode('Ошибка 400!')
+                    setImage(error400)
+                    setText(e.response.data.errorText)
+                    setInfo(e.response.data.info)
+                }
+
             })
     }
 
