@@ -47,17 +47,19 @@ function Clock() {
 
     // день недели на английском, месяц на английском (https://learn.javascript.ru/intl#intl-datetimeformat)
     const stringDay = Intl.DateTimeFormat('en', {weekday: "long"}).format(date) || <br/> // пишут студенты
-    const stringMonth = Intl.DateTimeFormat('en', {month: 'long'}).format(date) || <br/> // пишут студенты
+    const stringMonth = Intl.DateTimeFormat('en-US', {month: 'long'}).format(date) || <br/> // пишут студенты
 
     return (
         <div className={s.clock}>
             <div
                 id={'hw9-watch'}
                 className={s.watch}
+                onMouseEnter={onMouseEnter}
+                onMouseLeave={onMouseLeave}
             >
                 <span id={'hw9-day'}>{stringDay}</span>,{' '}
                 <span id={'hw9-time'}>
-                    <strong onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>{stringTime}</strong>
+                    <strong>{stringTime}</strong>
                 </span>
             </div>
 
