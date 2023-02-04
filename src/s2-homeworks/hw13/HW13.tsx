@@ -13,7 +13,7 @@ import errorUnknown from './images/error.svg'
 * 2 - дизэйблить кнопки пока идёт запрос
 * 3 - сделать стили в соответствии с дизайном
 * */
-type ResponseType = {
+type ResponseTypeHW13 = {
     errorText: string
     info: string
     yourBody: { success: boolean }
@@ -39,7 +39,7 @@ const HW13 = () => {
 
         axios
             .post(url, {success: x})
-            .then((res: AxiosResponse<ResponseType>) => {
+            .then((res: AxiosResponse<ResponseTypeHW13>) => {
                 setCode('Код 200!')
                 setImage(success200)
                 // дописать
@@ -47,7 +47,7 @@ const HW13 = () => {
                 setInfo(res.data.info)
                 console.log(res)
             })
-            .catch((e: AxiosError<ResponseType>) => {
+            .catch((e: AxiosError<ResponseTypeHW13>) => {
                 // дописать
                 if (e.code === "ERR_NETWORK") {
                     setCode('Error!')

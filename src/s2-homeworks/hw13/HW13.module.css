@@ -1,22 +1,40 @@
 .buttonsContainer {
+
 }
 
 .responseContainer {
+    min-height: 336px;
+    display: flex;
+    justify-content: center;
+
 }
 
 .imageContainer {
+    display: flex;
+    align-items: center;
 }
 
 .image {
 }
 
 .textContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 80px;
 }
 
 .code {
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 37px;
 }
 
 .text {
+    font-size: 16px;
+    line-height: 20px;
 }
 .info {
+    font-size: 16px;
+    line-height: 20px;
 }
