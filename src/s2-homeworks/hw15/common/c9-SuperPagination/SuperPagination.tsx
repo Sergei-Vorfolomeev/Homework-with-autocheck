@@ -34,6 +34,8 @@ const SuperPagination: React.FC<SuperPaginationPropsType> = (
                 id={id + '-pagination'}
                 sx={{
                     // стили для Pagination // пишет студент
+                    // position: 'relative',
+                    zIndex: 1
                 }}
                 page={page}
                 count={lastPage}

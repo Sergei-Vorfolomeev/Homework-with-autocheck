@@ -24,9 +24,11 @@
 
 .loading {
     position: absolute;
-    width: 700px;
-    height: 100px;
+    width: 850px;
+    height: 130px;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #FFFFFF;
+    opacity: .5;
 }
