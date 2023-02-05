@@ -41,7 +41,6 @@ const HW14 = () => {
                 // делает студент
                 // сохранить пришедшие данные
                 if (res) {
-                    console.log(res)
                     setTechs(res.data.techs)
                     setLoading(false)
                 }

@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import s2 from '../../s1-main/App.module.css'
 import s from './HW15.module.css'
-import axios from 'axios'
+import axios, {AxiosResponse} from 'axios'
 import SuperPagination from './common/c9-SuperPagination/SuperPagination'
 import {useSearchParams} from 'react-router-dom'
 import SuperSort from './common/c10-SuperSort/SuperSort'
+import CircularProgress from "@mui/material/CircularProgress";
 
 /*
 * 1 - дописать SuperPagination
@@ -25,6 +26,10 @@ type ParamsType = {
     sort: string
     page: number
     count: number
+}
+type ResponseType = {
+    techs: TechType[]
+    totalCount: number
 }
 
 const getTechs = (params: ParamsType) => {
@@ -50,23 +55,26 @@ const HW15 = () => {
     const sendQuery = (params: any) => {
         setLoading(true)
         getTechs(params)
-            .then((res) => {
+            .then((res: AxiosResponse<ResponseType> | void) => {
                 // делает студент
-
                 // сохранить пришедшие данные
-
-                //
+                if (res) {
+                    setTechs(res.data.techs)
+                    setLoading(false)
+                }
             })
     }
 
     const onChangePagination = (newPage: number, newCount: number) => {
         // делает студент
+        setPage(newPage)
+        setCount(newCount)
 
-        // setPage(
-        // setCount(
-
-        // sendQuery(
-        // setSearchParams(
+        sendQuery({sort, page: newPage, count: newCount})
+        setSearchParams({
+            page: newPage.toString(),
+            count: newCount.toString()
+        })
 
         //
     }
@@ -74,11 +82,14 @@ const HW15 = () => {
     const onChangeSort = (newSort: string) => {
         // делает студент
 
-        // setSort(
-        // setPage(1) // при сортировке сбрасывать на 1 страницу
+        setSort(newSort)
+        setPage(1) // при сортировке сбрасывать на 1 страницу
 
-        // sendQuery(
-        // setSearchParams(
+        sendQuery({sort: newSort, page, count})
+        setSearchParams({
+            page: page.toString(),
+            sort: newSort
+        })
 
         //
     }
@@ -107,28 +118,27 @@ const HW15 = () => {
             <div className={s2.hwTitle}>Homework #15</div>
 
             <div className={s2.hw}>
-                {idLoading && <div id={'hw15-loading'} className={s.loading}>Loading...</div>}
+                {idLoading && <div id={'hw15-loading'} className={s.loading}><CircularProgress /></div>}
+                    <SuperPagination
+                        page={page}
+                        itemsCountForPage={count}
+                        totalCount={totalCount}
+                        onChange={onChangePagination}
+                    />
 
-                <SuperPagination
-                    page={page}
-                    itemsCountForPage={count}
-                    totalCount={totalCount}
-                    onChange={onChangePagination}
-                />
+                    <div className={s.rowHeader}>
+                        <div className={s.techHeader}>
+                            tech
+                            <SuperSort sort={sort} value={'tech'} onChange={onChangeSort}/>
+                        </div>
 
-                <div className={s.rowHeader}>
-                    <div className={s.techHeader}>
-                        tech
-                        <SuperSort sort={sort} value={'tech'} onChange={onChangeSort}/>
+                        <div className={s.developerHeader}>
+                            developer
+                            <SuperSort sort={sort} value={'developer'} onChange={onChangeSort}/>
+                        </div>
                     </div>
 
-                    <div className={s.developerHeader}>
-                        developer
-                        <SuperSort sort={sort} value={'developer'} onChange={onChangeSort}/>
-                    </div>
-                </div>
-
-                {mappedTechs}
+                    {mappedTechs}
             </div>
         </div>
     )
